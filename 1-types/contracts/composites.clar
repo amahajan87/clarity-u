@@ -34,6 +34,7 @@ none
 ;; optional unwrapping for some value
 (unwrap-panic (some u10))
 
+;; uncomment to see error
 ;; optional unwrapping for none
 ;; (unwrap-panic none)
 
@@ -79,8 +80,9 @@ none
     (ok (+ u1 input))
 )
 
-(define-public (failure (input uint))
-    (print "This is the wrong way to do it")
-)
+;; uncomment to see error
+;; (define-public (failure (input uint))
+;;     (print "This is the wrong way to do it")
+;; )
 
 
