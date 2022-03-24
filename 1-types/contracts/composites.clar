@@ -14,9 +14,29 @@ none
 (element-at (list 4 8 15 16 23 42) u5) ;; Returns 42
 (element-at (list 4 8 15 16 23 42) u5000) ;; Returns none
 
+;; ;; Declaring an optional value
+(define-data-var beneficiary (optional principal) none)
+;; (define-data-var beneficiary (optional uint) none)
+
+(define-public (get-beneficiary)
+    (ok (var-get beneficiary))
+)
+
+(define-public (set-beneficiary (new-beneficiary principal))
+    (begin
+        (var-set beneficiary (some new-beneficiary))
+        (ok true)
+    )
+)
+
 ;; optional unwrapping
+
+;; optional unwrapping for some value
 (unwrap-panic (some u10))
-(unwrap-panic none)
+
+;; optional unwrapping for none
+;; (unwrap-panic none)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -55,8 +75,12 @@ none
 (err u5)
 
 ;; calling a function and returning ok response or err response
-(define-public (hello (input uint))
-    (ok input)
+(define-public (success (input uint))
+    (ok (+ u1 input))
+)
+
+(define-public (failure (input uint))
+    (print "This is the wrong way to do it")
 )
 
 
